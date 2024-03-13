@@ -1,0 +1,32 @@
+import tkinter as tk
+from tkinter import ttk
+
+def delete_row():
+    selected_item = treeview.selection()
+    if selected_item:
+        treeview.delete(selected_item)
+
+# Create main window
+root = tk.Tk()
+root.title("Delete Row Example")
+
+# Create Treeview widget
+treeview = ttk.Treeview(root)
+treeview['columns'] = ('Name', 'Age')
+treeview.heading('#0', text='ID')
+treeview.heading('Name', text='Name')
+treeview.heading('Age', text='Age')
+
+# Insert some sample data
+treeview.insert('', 'end', text='1', values=('John', '30'))
+treeview.insert('', 'end', text='2', values=('Alice', '25'))
+treeview.insert('', 'end', text='3', values=('Bob', '40'))
+
+# Add a button to delete selected row
+delete_button = tk.Button(root, text="Delete Row", command=delete_row)
+delete_button.pack()
+
+# Pack the Treeview
+treeview.pack()
+
+root.mainloop()
